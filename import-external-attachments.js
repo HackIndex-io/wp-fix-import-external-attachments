@@ -3,6 +3,8 @@
 
 /**
  * Import external attachments admin javascript functions
+ *
+ * Modified by HackIndex on 2026-11-06: security fixes. Fork of https://github.com/ryanpcmcquen/import-external-attachments
  */
 /**
  * Begin the process of re-sizing all of the checked images

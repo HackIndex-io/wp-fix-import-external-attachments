@@ -2,6 +2,8 @@
 
 /**
 *  AJAX FUNCTIONS
+*
+*  Modified by HackIndex on 2026-11-06: security fixes. Fork of https://github.com/ryanpcmcquen/import-external-attachments
 */
 
 	// ajax actions

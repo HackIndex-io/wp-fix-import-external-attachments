@@ -1,12 +1,15 @@
 <?php
 /*
-Plugin Name: Import external attachments
+Plugin Name: Import external attachments (HackIndex Patched)
 Plugin URI:  https://github.com/ryanpcmcquen/import-external-attachments
-Version: 1.5.12
-Description: Examines the text of a post and makes local copies of all the images & documents, adding them as gallery attachments on the post itself.
-Author: Ryan P. C. McQuen
+Version: 1.5.13
+Description: Examines the text of a post and makes local copies of all the images & documents, adding them as gallery attachments on the post itself. (HackIndex Patched)
+Author: Ryan P.C. McQuen
 Author URI: https://ryanpcmcquen.org
 License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Modified by HackIndex on 2026-11-06: security fixes. Fork of https://github.com/ryanpcmcquen/import-external-attachments
 */
 
 /*
