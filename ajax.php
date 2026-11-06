@@ -83,7 +83,7 @@
 		// do what we need with image...
 		$response = external_image_import_images( $post_id , true );
 
-		$results = ( $response ? '<strong>' . $post->post_title . '</strong> had ('. $response .') attachments successfully imported<br />' : '<strong>' . $post->post_title . ': </strong> No attachments imported - you might want to check whether they still exist!' );
+		$results = ( $response ? '<strong>' . esc_html( $post->post_title ) . '</strong> had ('. $response .') attachments successfully imported<br />' : '<strong>' . esc_html( $post->post_title ) . ': </strong> No attachments imported - you might want to check whether they still exist!' );
 
 		echo json_encode( $results  );
 		die(); // required by wordpress

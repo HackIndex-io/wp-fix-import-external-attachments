@@ -131,10 +131,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 			if( in_array( strtolower(pathinfo($external_image, PATHINFO_EXTENSION)), array( 'pdf', 'doc', 'docx' ) ) ) {
 				$cutlen = strlen( $external_image ) < 40  ? strlen( $external_image ) : -40;
 
-				$documents .= '<li><small>...' . substr( $external_image, $cutlen) . '</small></li>';
+				$documents .= '<li><small>...' . esc_html( substr( $external_image, $cutlen) ) . '</small></li>';
 			}
 			else {
-				$html .= '<img style="margin: 3px; max-width:50px;" src="'.$external_image.'" />';
+				$html .= '<img style="margin: 3px; max-width:50px;" src="'.esc_url( $external_image ).'" />';
 			}
 
 		}
@@ -369,7 +369,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 					$count += count( $imgs );
 
-					echo '<p>Post titled: "<strong>'.$post->post_title . '</strong>" - ';
+					echo '<p>Post titled: "<strong>'.esc_html( $post->post_title ) . '</strong>" - ';
 					external_image_import_images( $post->ID , true );
 					echo count( $imgs ) . ' Images processed</p>';
 
@@ -514,7 +514,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 				$html .= '<ul style="padding: 0 0 0 5px;">';
 				foreach( $posts_to_fix as $post_to_fix ) {
-					$html .= '<li>"<strong>'.$post_to_fix['title'].'</strong>" - ' .count($post_to_fix['images']). ' images. <a href="'.admin_url('post.php?post='.$post_to_fix['id'].'&action=edit').'">Edit Post</a>.</li>';
+					$html .= '<li>"<strong>'.esc_html( $post_to_fix['title'] ).'</strong>" - ' .count($post_to_fix['images']). ' images. <a href="'.admin_url('post.php?post='.$post_to_fix['id'].'&action=edit').'">Edit Post</a>.</li>';
 				}
 				$html .= '</ul>';
 				$html .= '</div>';
