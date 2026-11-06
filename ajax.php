@@ -65,7 +65,7 @@
 
 		global $wpdb;
 
-		$post_id = intval( $_POST['import_images_post'] );
+		$post_id = isset( $_POST['import_images_post'] ) ? intval( $_POST['import_images_post'] ) : 0;
 		$response = array();
 
 		if (!$post_id) {

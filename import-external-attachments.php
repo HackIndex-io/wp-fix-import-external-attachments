@@ -178,7 +178,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 			return;
 
-		if ( $force == false && !wp_verify_nonce( $_REQUEST['import_external_images_nonce'] , 'import_external_images_nonce' ) )
+		if ( $force == false && ( ! isset( $_REQUEST['import_external_images_nonce'] ) || !wp_verify_nonce( $_REQUEST['import_external_images_nonce'] , 'import_external_images_nonce' ) ) )
 			return;
 
 		if ( $force == false && $pagenow != 'post.php' )
@@ -379,7 +379,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 			}
 		}
 
-		if($done_message) {
+		if( ! empty( $done_message ) ) {
 			echo $before;
 			echo $done_message;
 			echo $resubmit;
@@ -439,8 +439,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 			echo '</div>';
 
 		} elseif ( isset( $_POST['action'] ) && $_POST['action'] == 'update' ) {
-			update_option('external_image_whichimgs',   esc_html( $_POST['external_image_whichimgs'] ) );
-			update_option('external_image_excludes',   	esc_html( $_POST['external_image_excludes'] ) );
+			update_option('external_image_whichimgs',   esc_html( $_POST['external_image_whichimgs'] ?? '' ) );
+			update_option('external_image_excludes',   	esc_html( $_POST['external_image_excludes'] ?? '' ) );
 
 			echo '<div id="message" class="updated fade" style="background-color:rgb(255,251,204);"><p>Settings updated.</p></div>';
 		}
@@ -480,6 +480,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 			$posts = get_posts( array( 'numberposts'=>-1, 'post_type' => array( 'post', 'page' ) ) );
 			$count = 0;
+			$posts_to_fix = null;
 			foreach( $posts as $this_post ) {
 				$images = external_image_get_img_tags ($this_post->ID);
 				if( !empty( $images ) ) {
