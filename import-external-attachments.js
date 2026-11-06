@@ -79,7 +79,8 @@
     }
     var data = {
       action: 'external_image_import_all_ajax',
-      import_images_post: posts[next_post]
+      import_images_post: posts[next_post],
+      nonce: jQuery('#external_image_import_nonce').val()
     };
 
     if (import_images_twenty_minute !== 'set') {
@@ -118,7 +119,8 @@
     //jQuery(document).scrollTop(target.offset().top);
 
     var data = {
-      action: 'external_image_get_backcatalog_ajax'
+      action: 'external_image_get_backcatalog_ajax',
+      nonce: jQuery('#external_image_import_nonce').val()
     };
 
     jQuery.post(ajaxurl, data, function (response) {

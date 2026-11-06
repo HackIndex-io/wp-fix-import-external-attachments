@@ -488,6 +488,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 			$import = '<div style="float:left; margin: 0 10px;">';
 			$import .= '<p class="submit" id="bulk-resize-examine-button">';
+			$import .= '<input type="hidden" id="external_image_import_nonce" value="' . esc_attr( wp_create_nonce( 'external_image_import' ) ) . '" />';
 			$import .= '<button class="button-primary" onclick="external_images_import_images();">Import attachments now</button>';
 			$import .= '</p>';
 

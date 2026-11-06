@@ -27,10 +27,20 @@
 		}
 	}
 
+	// Both actions are only used from the Import attachments page, so require its capability and nonce
+	function external_image_verify_ajax_request() {
+		check_ajax_referer( 'external_image_import', 'nonce' );
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( -1, 403 );
+		}
+	}
+
 	/**
 	 *
 	 */
 	function external_image_get_backcatalog_ajax( $numberposts = -1 ) {
+		external_image_verify_ajax_request();
+
 		$posts_to_import = external_image_get_backcatalog($numberposts);
 
 		if(!empty($posts_to_import)) {
@@ -51,6 +61,7 @@
 	 */
 	function external_image_import_all_ajax() {
 		//external_images_verify_permission();
+		external_image_verify_ajax_request();
 
 		global $wpdb;
 
