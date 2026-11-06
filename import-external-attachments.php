@@ -357,7 +357,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		$count = 0;
 
 		$before = '<form style="padding: 0 10px; margin: 20px 20px 0 0; float: left;" action="" method="post" name="external_image-backcatalog">';
-		$resubmit = '<input type="hidden" value="backcatalog" name="action">
+		$resubmit = wp_nonce_field( 'external_image-options', '_wpnonce', true, false ) . '<input type="hidden" value="backcatalog" name="action">
 			<input class="button-primary" type="submit" value="Process More Posts">';
 		$after = '</form>';
 
@@ -428,6 +428,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 	<h2>Import external attachments</h2>
 
 	<?php
+		if ( isset( $_POST['action'] ) && in_array( $_POST['action'], array( 'backcatalog', 'update' ), true ) ) {
+			check_admin_referer( 'external_image-options' );
+		}
+
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'backcatalog' ) {
 
 			echo '<div id="message" class="updated fade" style="background-color:rgb(255,251,204); overflow: hidden; margin: 0 0 10px 0">';
